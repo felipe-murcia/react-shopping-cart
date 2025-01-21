@@ -3,24 +3,31 @@ import Header from '../components/Header/Header'
 import { SectionProduct } from '../components/SectionProduct/SectionProduct'
 import useProducts from '../hooks/useProducts';
 import { Collections } from '../components/Collections/Collections';
+import { Checkout } from '../components/Checkout/Checkout';
 
 function Main() {
 
   const [ idCollection, setIdCollection ] = useState('');
   let { products, error, loading, fetchProducts } = useProducts(idCollection);
-
-//   useEffect(() => {
-//     alert('se mpmtp')
-//     fetchProducts();
-//   }, []);
+  const [ showCart, setShowCart ] = useState(false);
+  const [ carts, setCarts ] = useState<any>([]);
+  
+  const handleCart = (value:any) => {
+    const newCart = [...carts, value];
+    setCarts(newCart);
+  }
 
   return (
-    <>
-      <Header/>
-
-      <Collections  handleCollection={(value)=>setIdCollection(value)}/>
-
-      <SectionProduct data={products}/>
+    <> 
+      <Header numCart={carts.length} setShowCart={setShowCart}/>
+      {
+        showCart ? <Checkout carts={carts} />
+        : 
+        <>
+          <Collections  handleCollection={(value)=>setIdCollection(value)}/>
+          <SectionProduct data={products} handleCart={handleCart}/>
+        </>
+      }
     </>
   )
 }

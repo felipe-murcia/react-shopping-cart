@@ -2,16 +2,13 @@ import React from 'react';
 
 
 
-export const CardProduct = ({ data }:any) => {
+export const CardProduct = ({ data, handleCart }:any) => {
 
-    // console.log('data item-',data)
     let node = data?.node
 
     let getPrice = (dataPrice) => {
-
         let price = dataPrice?.edges[0]?.node?.price.amount
         return price
-
     }
 
   return (
@@ -27,7 +24,7 @@ export const CardProduct = ({ data }:any) => {
 
             <div className="flex items-center justify-between">
                 <span className="text-3xl font-bold text-lime-800 dark:text-white">${getPrice(node?.variants)}</span>
-                <a href="#" className="text-white bg-lime-700 hover:bg-lime-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Agregar</a>
+                <a href="#" className="text-white bg-lime-700 hover:bg-lime-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleCart}>Agregar</a>
             </div>
  
         </div>
