@@ -27,7 +27,7 @@ export const Collections = ({ handleCollection }: CollectionsProps) => {
                         onClick={() => handleCollection(node.id)}
                         key={i}
                         style={{
-                            margin: '0.3rem', // Espaciado uniforme entre tarjetas
+                            margin: '0.3rem',
                         }}
                     >
                         <img
