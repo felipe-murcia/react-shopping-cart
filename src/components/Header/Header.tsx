@@ -13,7 +13,7 @@ export const Header = ({ numCart = 0, setShowCart }:any) => {
     <nav className="relative bg-white dark:bg-gray-900">
         <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
             <div className="flex items-center justify-between">
-                <a href="#" onClick={setShowCart}>
+                <a href="/" onClick={setShowCart}>
                     <Logo/>
                 </a>
     
