@@ -17,11 +17,16 @@ function Main() {
     setCarts(newCart);
   }
 
+  const removeFromCart = (index: number) => {
+    const newCart = carts.filter((_, i) => i !== index);
+    setCarts(newCart);
+  };
+
   return (
     <> 
-      <Header numCart={carts.length} setShowCart={setShowCart}/>
+      <Header numCart={carts.length} setShowCart={setShowCart} />
       {
-        showCart ? <Checkout carts={carts} />
+        showCart ? <Checkout carts={carts} removeFromCart={removeFromCart}/>
         : 
         <>
           <Collections  handleCollection={(value)=>setIdCollection(value)}/>

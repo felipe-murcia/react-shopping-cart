@@ -5,9 +5,10 @@ import carritoVacio from '../../assets/carro-vacio.png';
 
 interface CheckoutProps {
   carts: any[];
+  removeFromCart: (index: number) => void;
 }
 
-export const Checkout = ({ carts = [] }: CheckoutProps) => {
+export const Checkout = ({ carts = [], removeFromCart }: CheckoutProps) => {
 
   const getPrice = (dataPrice) => {
     return parseFloat(dataPrice?.edges[0]?.node?.price.amount) || 0;
@@ -43,7 +44,7 @@ export const Checkout = ({ carts = [] }: CheckoutProps) => {
                 </p>
               </div>
             ) : (
-              carts.map((item: any) => {
+              carts.map((item: any, index:number) => {
                 let node = item.node;
                 return (
                   <div
@@ -61,6 +62,14 @@ export const Checkout = ({ carts = [] }: CheckoutProps) => {
                         ${getPrice(node?.variants).toFixed(2)}
                       </p>
                     </div>
+
+                    <div>
+
+ <a href="#" className="text-white bg-red-700 hover:bg-lime-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => removeFromCart(index)}>Eliminar</a>
+                    </div>
+
+
+
                   </div>
                 );
               })
@@ -289,7 +298,7 @@ export const Checkout = ({ carts = [] }: CheckoutProps) => {
               <p className="text-2xl font-semibold text-gray-900">${total.toFixed(2)}</p>
             </div>
           </div>
-          <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+          <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" disabled={carts.length === 0}>
             Pagar
           </button>
         </div>
